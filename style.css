@@ -19,6 +19,7 @@ h1 {
 .container-sliders {
     display: flex;
     gap: 50px;
+    font-size: 24px;
 }
 .slider {
     background-color: #854442;
@@ -42,12 +43,9 @@ h1 {
 }
 label {
     color: #fff4e6;
-    font-size: 24px;
 }
 #result {
-    font-size: 24px;
     color:#fff4e6;
-
 }
 input[type="range"] {
     -webkit-appearance: none;
@@ -95,3 +93,20 @@ footer {
 footer > a {
     margin-left: 30px;
 }
+@media (max-width: 1231px) {
+    .container-sliders {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 2vw;
+    }
+    .slider {
+        height: 15vh;
+        width: 20vw;
+    }
+    h1 {
+        font-size: 3vh;
+    }
+    .price {
+        font-size: 2vh;
+    }
+  }
