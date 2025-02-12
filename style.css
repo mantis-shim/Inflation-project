@@ -109,4 +109,18 @@ footer > a {
     .price {
         font-size: 2vh;
     }
+        input[type="range"]::-webkit-slider-runnable-track {
+        height: 1.5vh;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        height: 1.5vh;
+        width: 1.5vh;
+     }
+    input[type="range"]::-moz-range-track {
+        height: 1.5vh;
+    }
+    input[type="range"]::-moz-range-thumb {
+        height: 1.5vh;
+        width: 1.5vh;
+    }
   }
