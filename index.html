@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infliacija</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-main">
+        <h1 class="roboto">INFLIACIJOS SIMULIACIJA</h1>
+        <div class="container-sliders">
+
+            <div class="slider food">
+                <label for="food">Maistas: <span id="foodValue">0</span> %</label>
+                <input type="range" id="food" min="-100" max="100" value="0">
+
+                <p class="price"><span id="foodPrice">0</span> €/mėn</p>
+            </div>
+            <div class="slider clothes">
+                <label for="clothes">Drabužiai: <span id="clothesValue">0</span> %</label>
+                <input type="range" id="clothes" min="-100" max="100" value="0">
+                <p class="price"><span id="clothesPrice">0</span> €/mėn</p>
+            </div>
+            <div class="slider transport">
+                <label for="transport">Transportas: <span id="transportValue">0</span> %</label>
+                <input type="range" id="transport" min="-100" max="100" value="0">
+                <p class="price"><span id="transportPrice">0</span> €/mėn</p>
+            </div>
+            <div class="slider taxes">
+                <label for="taxes">Mokesčiai: <span id="taxesValue">0</span> %</label>
+                <input type="range" id="taxes" min="-100" max="100" value="0">
+                <p class="price"><span id="taxesPrice">0</span> €/mėn</p>
+            </div>
+        </div>        
+        <p id="result">INFLIACIJA: 0%</p>
+        <footer><a href="https://osp.stat.gov.lt/statistiniu-rodikliu-analize?fbclid=IwZXh0bgNhZW0CMTEAAR1TL1Y_7dl6bNMzcB9XAJD6PBJUnIb5F9LuvRbYGbdgzk4hvfy42AI0APo_aem_7oBHEQE5PhJ-4YKgjn26Fw#/">Duomenys 2018m. Lietuvos miestų ir kaimų gyventojų.</a></footer>
+    </div>
+    <script>
+        calculateInflation();
+        function updateSliders(id) {
+            document.getElementById(id + "Value").textContent = document.getElementById(id).value;
+            calculateInflation();
+        }
+
+        function calculateInflation() {
+            let bTransport= 52.5;
+            let bClothes= 26.6;
+            let bTaxes= 68.7;
+            let bFood= 131.5;
+            let transport = (1 + parseFloat(document.getElementById("transport").value)/100 ) * bTransport;
+            let clothes= (1 + parseFloat(document.getElementById("clothes").value)/100 ) * bClothes;
+            let taxes= (1 + parseFloat(document.getElementById("taxes").value)/100 ) * bTaxes;
+            let food= (1 + parseFloat(document.getElementById("food").value)/100 ) * bFood;
+
+            let baseBasket=bTransport+bClothes+bTaxes+bFood;
+            let baseVKI=100;
+            let newVKI=(transport+clothes+taxes+food)/baseBasket*100;
+
+            let inflation = (newVKI - baseVKI)/baseVKI * 100;
+            document.getElementById("result").textContent = "Infliacija: " + inflation.toFixed(2) + " %";
+            document.getElementById("taxesPrice").textContent = taxes.toFixed(2);
+            document.getElementById("clothesPrice").textContent= clothes.toFixed(2);
+            document.getElementById("foodPrice").textContent = food.toFixed(2);
+            document.getElementById("transportPrice").textContent= transport.toFixed(2);
+        }
+
+        document.getElementById("transport").oninput = () => updateSliders("transport");
+        document.getElementById("food").oninput = () => updateSliders("food");
+        document.getElementById("taxes").oninput = () => updateSliders("taxes");
+        document.getElementById("clothes").oninput = () => updateSliders("clothes");
+    </script>
+</body>
+</html>
