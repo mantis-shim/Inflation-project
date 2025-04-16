@@ -20,6 +20,8 @@ h1 {
     display: flex;
     gap: 50px;
     font-size: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .slider {
     background-color: #854442;
@@ -35,16 +37,16 @@ h1 {
 }
 .container-main {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    min-height: 100vh;
     width: 100vw;
 }
 label {
     color: #fff4e6;
 }
-#result {
+p {
     color:#fff4e6;
 }
 input[type="range"] {
@@ -94,22 +96,23 @@ footer > a {
     margin-left: 30px;
 }
 @media (max-width: 1231px) {
+
     .container-sliders {
         flex-direction: column;
         gap: 10px;
-        font-size: 2vw;
+        font-size: 12px;
     }
     .slider {
         height: 15vh;
-        width: 20vw;
+        width: 15vw;
     }
     h1 {
-        font-size: 3vh;
+        font-size: 20px;
     }
     .price {
-        font-size: 2vh;
+        font-size: 12px;
     }
-        input[type="range"]::-webkit-slider-runnable-track {
+    input[type="range"]::-webkit-slider-runnable-track {
         height: 1.5vh;
     }
     input[type="range"]::-webkit-slider-thumb {
@@ -125,5 +128,7 @@ footer > a {
     }
     footer {
         font-size: 12px;
+        text-align: center;
+        margin: 0;
     }
   }
